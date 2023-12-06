@@ -74,7 +74,7 @@ class BlackScholesPriceProcess(PriceProcess):
                 start_rv = brownian_motions[i][0]
                 for j in range(len_fixing_dates - 1):
                     fixing_date = fixing_dates[j + 1]
-                    draws = scipy.random.standard_normal(path_count)
+                    draws = numpy.random.standard_normal(path_count)
                     T = get_duration_years(_start_date, fixing_date)
                     if T < 0:
                         raise DslError(

@@ -337,3 +337,16 @@ class DslParser(object):
         comparators = [self.visitAstNode(c) for c in node.comparators]
         args = [left, op_names, comparators]
         return self.dsl_classes['Compare'](node=node, *args)
+    
+    
+    def visitConstant(self, node):
+        """
+        Visitor method for ast.Constant.
+
+        Returns a DSL Constant object, with the string/number value.
+        """
+        # assert isinstance(node, ast.Str)
+        try:
+           return self.dsl_classes['String'](node.s, node=node)
+        except:
+           return self.dsl_classes['Number'](node.s, node=node)

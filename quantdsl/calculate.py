@@ -296,7 +296,7 @@ class Calculate(object):
         seconds_evaluating = (datetime_now - self.started_evaluating).total_seconds()
 
         duration = self.times[-1] - self.times[0]
-        rate_cost = self.result_cost / duration.total_seconds()
+        rate_cost = self.result_cost / max(duration.total_seconds(),0.0001)
         eta = (self.result_cost_expected - self.result_cost) / rate_cost
 
         # Abort if there isn't enough time left.
